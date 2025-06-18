@@ -1,0 +1,70 @@
+.section {
+  margin: 40px;
+  font-family: 'Roboto', sans-serif;
+  color: #201B10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 30px;
+  margin-bottom: 24px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.highlight {
+  font-weight: 600;
+}
+
+.uploadContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+
+
+.statusText {
+  margin-top: 10px;
+  font-size: 35px;
+  text-align: center;
+  color: #201B10;
+  margin: 0;
+}
+
+.errorText {
+  color: #FF5F00;
+}
+
+
+.dropZone {
+  position: relative;
+  background-color: #EACDFF;
+  border-radius: 40px;
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px dashed transparent;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.dropZone.dragging {
+  background-color: #D4FAE6;
+}
+
+.dropZone.fileLoaded {
+  background-color: transparent;
+  border: 2px solid #CB81FF;
+  padding: 60px 24px;
+}
+
+.dropZone.error {
+  background-color: transparent;
+  border: 2px solid #FF6B6B;
+}

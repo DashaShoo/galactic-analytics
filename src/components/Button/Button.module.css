@@ -1,0 +1,33 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 27px;
+  font-size: 35px;
+  line-height: 1.1;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.default {
+  background-color: #2AE881;
+  color: #201B10;
+}
+
+.primary {
+  background-color: #CB81FF;
+  color: #201B10;
+}
+
+.success {
+  background-color: #2AE881;
+  color: #201B10;
+}
+
+.disabled {
+  background-color: #C0C0C0;
+  color: #787878;
+  cursor: not-allowed;
+}
