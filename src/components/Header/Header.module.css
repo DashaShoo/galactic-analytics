@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  color: #201B10;
+  font-weight: 400;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.title{
+  background-color: #CB81FF;
+  font-weight: 500;
+    padding: 0 8px;
+    line-height: 89,5%;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  color: #201B10;
+  font-weight: 400;
+  padding: 10px;
+}
+
+
+.active {
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-color: #201B10;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 10px;
+}
