@@ -3,12 +3,14 @@ import styles from "./Upload.module.css";
 import { UploadButton } from "../UploadButton/UploadButton";
 import { Button } from "../Button/Button";
 import { ClearButton } from '../ClearButton/ClearButton';
+import { AnalyticsTable } from '../AnalyticsTable/AnalyticsTable'
 
 export const Upload = () => {
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState('idle'); // 'idle', 'parsing', 'success', 'error'
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef(null);
+  const [analyticsData, setAnalyticsData] = useState(null);
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -63,30 +65,67 @@ export const Upload = () => {
   const handleClearFile = () => {
     setFile(null);
     setStatus('idle');
+    setAnalyticsData(null);
   };
 
-  const handleSubmit = async () => {
+   const handleSubmit = async () => {
     if (!file) return;
 
     setStatus('parsing');
+    setAnalyticsData(null);
+    console.log('Начинаем потоковую агрегацию...');
 
     try {
-      // Эмуляция запроса к API
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const formData = new FormData();
+      formData.append('file', file);
 
-      // Сохраняем в историю
-      const historyItem = {
-        id: Date.now(),
-        filename: file.name,
-        date: new Date().toISOString(),
-        status: 'success'
-      };
+      const response = await fetch('http://localhost:3000/aggregate?rows=10000', {
+        method: 'POST',
+        body: formData
+      });
 
-      const history = JSON.parse(localStorage.getItem('uploadHistory') || '[]');
-      localStorage.setItem('uploadHistory', JSON.stringify([...history, historyItem]));
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      if (!response.body) throw new Error('ReadableStream not supported');
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (line.trim() === '') continue;
+          try {
+            const data = JSON.parse(line);
+            console.log('Получены данные:', data);
+            setAnalyticsData(data); // Обновляем данные для таблицы
+          } catch (e) {
+            setStatus('error');
+            console.warn('Ошибка парсинга:', e);
+          }
+        }
+      }
+
+      if (buffer.trim() !== '') {
+        try {
+          const data = JSON.parse(buffer);
+          console.log('Финальные данные:', data);
+          setAnalyticsData(data); // Финализируем данные
+        } catch (e) {
+          setStatus('error');
+          console.warn('Ошибка парсинга финальных данных:', e);
+        }
+      }
 
       setStatus('success');
     } catch (error) {
+      console.error('Ошибка:', error);
       setStatus('error');
     }
   };
@@ -130,7 +169,7 @@ export const Upload = () => {
                 status={status}
                 onClick={handleUploadClick}
             />
-            {file && (
+            {file && status !== 'parsing' &&(
                 <div className={styles.clearButtonWrapper}>
                 <ClearButton onClick={handleClearFile} />
                 </div>
@@ -159,6 +198,8 @@ export const Upload = () => {
           Отправить
         </Button>
       )}
+
+      <AnalyticsTable data={analyticsData}/>
     </section>
   );
 };

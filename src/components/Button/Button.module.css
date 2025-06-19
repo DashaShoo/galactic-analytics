@@ -8,6 +8,7 @@
   border-radius: 25px;
   border: none;
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
 
@@ -17,7 +18,7 @@
 }
 
 .primary {
-  background-color: #CB81FF;
+  background-color: #2AE881;
   color: #201B10;
 }
 

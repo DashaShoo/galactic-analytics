@@ -1,10 +1,11 @@
 .section {
-  margin: 40px;
+  margin: 40px 40px 60px;
   font-family: 'Roboto', sans-serif;
   color: #201B10;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .title {
@@ -16,7 +17,7 @@
 }
 
 .highlight {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .uploadContainer {
@@ -40,7 +41,6 @@
   color: #FF5F00;
 }
 
-
 .dropZone {
   position: relative;
   background-color: #EACDFF;
@@ -51,6 +51,7 @@
   align-items: center;
   border: 2px dashed transparent;
   width: 100%;
+  box-sizing: border-box;
   margin-bottom: 20px;
 }
 
@@ -60,11 +61,11 @@
 
 .dropZone.fileLoaded {
   background-color: transparent;
-  border: 2px solid #CB81FF;
+  border: 1px solid #201B10;
   padding: 60px 24px;
 }
 
 .dropZone.error {
   background-color: transparent;
-  border: 2px solid #FF6B6B;
+  border: 1px solid #FF5F00;
 }
