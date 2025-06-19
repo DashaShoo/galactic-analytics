@@ -1,0 +1,11 @@
+.statusText {
+  margin-top: 10px;
+  font-size: 35px;
+  text-align: center;
+  color: #201B10;
+  margin: 0;
+}
+
+.errorText {
+  color: #FF5F00;
+}

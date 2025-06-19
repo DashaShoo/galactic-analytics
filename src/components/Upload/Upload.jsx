@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
 import styles from "./Upload.module.css";
+import { Title } from "../Title/Title";
 import { UploadButton } from "../UploadButton/UploadButton";
 import { Button } from "../Button/Button";
 import { ClearButton } from '../ClearButton/ClearButton';
-import { AnalyticsTable } from '../AnalyticsTable/AnalyticsTable'
+import { AnalyticsTable } from '../AnalyticsTable/AnalyticsTable';
+import { StatusLabel } from "../StatusLabel/StatusLabel";
+
 
 export const Upload = () => {
   const [file, setFile] = useState(null);
@@ -130,20 +133,6 @@ export const Upload = () => {
     }
   };
 
-  const getStatusText = () => {
-    switch (status) {
-        case 'parsing':
-        return 'идёт парсинг файла';
-        case 'success':
-        return 'готово!';
-        case 'error':
-        return 'упс, не то...';
-        default:
-        return file ? 'файл загружен!' : 'или перетащите сюда';
-    }
-  };
-
-
   const dropZoneClass = `${styles.dropZone} ${
     isDragging ? styles.dragging :
     file ? styles.fileLoaded :
@@ -152,10 +141,7 @@ export const Upload = () => {
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.title}>
-        Загрузите <span className={styles.highlight}>csv</span> файл и получите <span className={styles.highlight}>полную информацию</span> о нём за сверхнизкое время
-      </h2>
-
+      
       <div
         className={dropZoneClass}
         onDrop={handleDrop}
@@ -168,6 +154,7 @@ export const Upload = () => {
                 file={file}
                 status={status}
                 onClick={handleUploadClick}
+                mode = 'upload'
             />
             {file && status !== 'parsing' &&(
                 <div className={styles.clearButtonWrapper}>
@@ -175,10 +162,12 @@ export const Upload = () => {
                 </div>
             )}
         </div>
-        <p className={`${styles.statusText} ${status === 'error' ? styles.errorText : ''}`}>
-            {getStatusText()}
-        </p>
 
+        <StatusLabel 
+            status={status} 
+            mode="upload" 
+            file={file}
+        />
 
         <input
           ref={inputRef}

@@ -1,7 +1,12 @@
 import { useRef } from 'react';
 import styles from './UploadButton.module.css';
 
-export const UploadButton = ({ file, status, onClick }) => {
+export const UploadButton = ({
+  file = null,
+  status = 'idle',
+  onClick = () => {},
+  mode = 'upload' // 'upload' или 'generate'
+}) => {
   const inputRef = useRef(null);
 
   const handleChange = (e) => {
@@ -28,11 +33,19 @@ export const UploadButton = ({ file, status, onClick }) => {
       status === 'success' ? styles.success : ''
     ].join(' ');
 
-    return (
-      <div className={buttonClass} onClick={onClick}>
-        <span>{file ? file.name : 'Загрузить файл'}</span>
-      </div>
-    );
+    if (mode === 'upload'){
+      return (
+        <div className={buttonClass} onClick={onClick}>
+          <span>{file ? file.name : 'Загрузить файл'}</span>
+        </div>
+    )}
+    else if (mode === 'generate'){
+      return (
+        <div className={buttonClass} onClick={onClick}>
+          <span>{status === 'error' ? "Ошибка" : status === 'success' ? "Done!" : ''}</span>
+        </div>
+    )
+    }
   };
 
   return (

@@ -44,6 +44,7 @@
 
 .success {
   background: #D4FAE6;
+  border: none;
 }
 
 .loader {

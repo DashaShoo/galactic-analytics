@@ -1,0 +1,16 @@
+.section {
+  margin: 20px 40px 60px;
+  font-family: 'Roboto', sans-serif;
+  color: #201B10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.uploadContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}

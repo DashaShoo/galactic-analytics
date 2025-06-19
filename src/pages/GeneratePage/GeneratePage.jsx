@@ -1,7 +1,13 @@
+import { Title } from '../../components/Title/Title';
+import { Generator } from '../../components/Generator/Generator';
+
 export const GeneratePage = () => {
   return (
     <div className="generate-page">
-      <h1>CSV Генератор</h1>
+        <Title>
+            Сгенерируйте готовый csv-файл нажатием одной кнопки
+        </Title>
+        <Generator />
     </div>
   );
 };

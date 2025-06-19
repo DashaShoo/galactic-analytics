@@ -1,5 +1,5 @@
 .section {
-  margin: 40px 40px 60px;
+  margin: 20px 40px;
   font-family: 'Roboto', sans-serif;
   color: #201B10;
   display: flex;
@@ -8,37 +8,13 @@
   box-sizing: border-box;
 }
 
-.title {
-  font-size: 30px;
-  margin-bottom: 24px;
-  font-weight: 400;
-  line-height: 1.1;
-  text-align: center;
-}
 
-.highlight {
-  font-weight: 700;
-}
 
 .uploadContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-}
-
-
-
-.statusText {
-  margin-top: 10px;
-  font-size: 35px;
-  text-align: center;
-  color: #201B10;
-  margin: 0;
-}
-
-.errorText {
-  color: #FF5F00;
 }
 
 .dropZone {
