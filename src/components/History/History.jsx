@@ -33,6 +33,7 @@ export const History = () => {
                 fileName={item.fileName} 
                 date={item.date} 
                 status={item.status}
+                data={item.analyticsData}
               />
               <ClearButton 
                 mode='delete' 

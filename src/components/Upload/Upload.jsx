@@ -78,22 +78,23 @@ export const Upload = () => {
     setAnalyticsData(null);
 
     try {
-      const formData = new FormData();
-      formData.append('file', file);
+        const formData = new FormData();
+        formData.append('file', file);
 
-      const response = await fetch('http://localhost:3000/aggregate?rows=10000', {
+        const response = await fetch('http://localhost:3000/aggregate?rows=10000', {
         method: 'POST',
         body: formData
-      });
+        });
 
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      if (!response.body) throw new Error('ReadableStream not supported');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.body) throw new Error('ReadableStream not supported');
 
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = '';
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        let latestData = null; // Добавляем промежуточную переменную
 
-      while (true) {
+        while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
@@ -102,46 +103,49 @@ export const Upload = () => {
         buffer = lines.pop() || '';
 
         for (const line of lines) {
-          if (line.trim() === '') continue;
-          try {
+            if (line.trim() === '') continue;
+            try {
             const data = JSON.parse(line);
+            latestData = data; // Сохраняем данные здесь
             setAnalyticsData(data);
-          } catch (e) {
+            } catch (e) {
             setStatus('error');
-          }
+            }
         }
-      }
+        }
 
-      if (buffer.trim() !== '') {
+        if (buffer.trim() !== '') {
         try {
-          const data = JSON.parse(buffer);
-          setAnalyticsData(data);
+            const data = JSON.parse(buffer);
+            latestData = data;
+            setAnalyticsData(data);
         } catch (e) {
-          setStatus('error');
+            setStatus('error');
         }
-      }
+        }
 
-      setStatus('success');
-      saveToHistory({
+        setStatus('success');
+        console.log('Saving to history:', latestData); // Используем latestData вместо analyticsData
+        saveToHistory({
         id: Date.now(),
         fileName: file.name,
         date: new Date().toISOString(),
         status: 'success',
-        analyticsData: analyticsData,
-      });
-    } catch (error) {
-      setStatus('error');
-      if (file) {
-        saveToHistory({
-          id: Date.now(),
-          fileName: file.name,
-          date: new Date().toISOString(),
-          status: 'error',
-          analyticsData: null,
+        analyticsData: latestData, // Используем latestData
         });
-      }
+    } catch (error) {
+        setStatus('error');
+        if (file) {
+        saveToHistory({
+            id: Date.now(),
+            fileName: file.name,
+            date: new Date().toISOString(),
+            status: 'error',
+            analyticsData: null,
+        });
+        }
     }
-  };
+    };
 
   const dropZoneClass = `${styles.dropZone} ${
     isDragging ? styles.dragging :

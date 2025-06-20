@@ -9,17 +9,28 @@ const dayToDate = (day) => {
   });
 };
 
-export const AnalyticsRow = ({ title, value, isDay = false }) => {
+export const AnalyticsRow = ({ title, value, isDay = false, mode = 'table'}) => {
   const displayValue = isDay ? dayToDate(value) : value;
-  
-  return (
-    <div className={styles.row}>
-      <div className={styles.value}>
-        {displayValue}
+  if (mode === 'table'){
+    return (
+      <div className={styles.row}>
+        <div className={styles.value}>
+          {displayValue}
+        </div>
+        <div className={styles.title}>
+          {title}
+        </div>
       </div>
-      <div className={styles.title}>
-        {title}
-      </div>
-    </div>
-  );
+  );}
+  else if (mode === 'history'){
+    return (
+      <div className={styles.historyRow}>
+        <div className={styles.value}>
+          {displayValue}
+        </div>
+        <div className={styles.title}>
+          {title}
+        </div>
+      </div>   
+  )}
 };
