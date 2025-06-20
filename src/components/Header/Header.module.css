@@ -1,7 +1,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  margin: 40px;
+  margin: 40px 40px 80px 40px;
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
   color: #201B10;

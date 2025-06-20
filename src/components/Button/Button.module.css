@@ -18,13 +18,8 @@
 }
 
 .primary {
-  background-color: #2AE881;
-  color: #201B10;
-}
-
-.success {
-  background-color: #2AE881;
-  color: #201B10;
+  background-color: #201B10;
+  color: #FFFFFF;
 }
 
 .disabled {

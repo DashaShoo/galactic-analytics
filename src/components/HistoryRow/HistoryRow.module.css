@@ -1,0 +1,33 @@
+.row{
+    background-color: #CB81FF;
+    border-radius: 40px;
+    margin: 0 0 10px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 87px;
+    font-size: 30px;
+    font-weight: 400;
+    color: #201B10;
+    padding: 16px 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.smile{
+    height: 40px;
+    width: 40px;
+}
+
+.opacity{
+    opacity: 0.5;
+}

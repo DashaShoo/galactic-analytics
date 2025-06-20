@@ -57,7 +57,7 @@ export const Generator = () => {
         <div className={styles.section}>
             {status === 'idle' && (
                 <Button
-                    variant="primary"
+                    variant="default"
                     onClick={handleSubmit}
                 >
                     Начать генерацию

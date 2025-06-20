@@ -6,7 +6,7 @@ import { Button } from "../Button/Button";
 import { ClearButton } from '../ClearButton/ClearButton';
 import { AnalyticsTable } from '../AnalyticsTable/AnalyticsTable';
 import { StatusLabel } from "../StatusLabel/StatusLabel";
-
+import { saveToHistory } from '../../services/history';
 
 export const Upload = () => {
   const [file, setFile] = useState(null);
@@ -76,7 +76,6 @@ export const Upload = () => {
 
     setStatus('parsing');
     setAnalyticsData(null);
-    console.log('Начинаем потоковую агрегацию...');
 
     try {
       const formData = new FormData();
@@ -106,11 +105,9 @@ export const Upload = () => {
           if (line.trim() === '') continue;
           try {
             const data = JSON.parse(line);
-            console.log('Получены данные:', data);
-            setAnalyticsData(data); // Обновляем данные для таблицы
+            setAnalyticsData(data);
           } catch (e) {
             setStatus('error');
-            console.warn('Ошибка парсинга:', e);
           }
         }
       }
@@ -118,18 +115,31 @@ export const Upload = () => {
       if (buffer.trim() !== '') {
         try {
           const data = JSON.parse(buffer);
-          console.log('Финальные данные:', data);
-          setAnalyticsData(data); // Финализируем данные
+          setAnalyticsData(data);
         } catch (e) {
           setStatus('error');
-          console.warn('Ошибка парсинга финальных данных:', e);
         }
       }
 
       setStatus('success');
+      saveToHistory({
+        id: Date.now(),
+        fileName: file.name,
+        date: new Date().toISOString(),
+        status: 'success',
+        analyticsData: analyticsData,
+      });
     } catch (error) {
-      console.error('Ошибка:', error);
       setStatus('error');
+      if (file) {
+        saveToHistory({
+          id: Date.now(),
+          fileName: file.name,
+          date: new Date().toISOString(),
+          status: 'error',
+          analyticsData: null,
+        });
+      }
     }
   };
 
@@ -180,7 +190,7 @@ export const Upload = () => {
 
       {status !== 'parsing' && status !== 'success' && (
         <Button
-          variant={status === 'success' ? 'success' : 'primary'}
+          variant='default'
           disabled={!file || status === 'error'}
           onClick={handleSubmit}
         >
