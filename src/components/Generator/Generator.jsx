@@ -4,47 +4,21 @@ import { UploadButton } from '../UploadButton/UploadButton';
 import { ClearButton } from '../ClearButton/ClearButton';
 import { StatusLabel } from '../StatusLabel/StatusLabel';
 import { useState } from 'react';
+import { useReportGenerator } from '../../hooks/useReportGenerator';
 
 export const Generator = () => {
-  const [status, setStatus] = useState('idle'); // 'idle', 'parsing', 'success', 'error'
+  const [status, setStatus] = useState('idle');
   const [generatedFile, setGeneratedFile] = useState(null);
+  const { generate } = useReportGenerator();
 
   const handleSubmit = async () => {
     setStatus('parsing');
-
-    try {
-      const response = await fetch(
-        'http://localhost:3000/report?size=0.1&withErrors&maxSpend=1000',
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      // Получаем имя файла из headers
-      const contentDisposition = response.headers.get('content-disposition');
-      const filename = contentDisposition ? contentDisposition.split('filename=')[1] : 'report.csv';
-
-      // Создаем blob из ответа
-      const blob = await response.blob();
+    const { success, filename, blob } = await generate();
+    if (success) {
       const file = new File([blob], filename, { type: 'text/csv' });
-
       setGeneratedFile(file);
-      setStatus('success');
-
-      // Автоматическое скачивание
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      a.remove();
-    } catch (error) {
-      console.error('Ошибка генерации:', error);
-      setStatus('error');
     }
+    setStatus(success ? 'success' : 'error');
   };
 
   const handleClear = () => {
