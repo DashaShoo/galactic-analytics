@@ -1,12 +1,94 @@
-# React + Vite
+# Сервис межгалактической аналитики
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Приложение для загрузки CSV таблиц, получения аналитики, генерации тестовых данных и хранения истории загрузок.  
 
-Currently, two official plugins are available:
+## Технологический стек
+- React + JavaScript  
+- Zustand (state-менеджер)  
+- CSS Modules (стили)  
+- react-router-dom (роутинг)  
+- Fetch API (работа с сервером)  
+- React Portals (модальные окна)  
+- Vite (сборка проекта)  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Запуск проекта
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Требования
+- Node.js v16+  
+- npm или yarn  
+
+### Установка зависимостей
+```bash
+npm install
+```
+
+### Запуск проекта
+```bash
+npm run dev
+```
+
+## Архитектура проекта
+src/ – исходный код
+
+components/ – переиспользуемые UI-компоненты (кнопки, лейблы, таблицы и т.д.)
+
+pages/ – страницы приложения (Загрузка, Генератор, История)
+
+hooks/ – кастомные React-хуки (например, useFileUpload, useReportGenerator)
+
+services/ – сервисы для работы с API и локальным хранилищем
+
+store/ – Zustand state-менеджер
+
+api/ – функции для запросов к backend
+
+public/ – статические файлы
+
+## Основные компоненты
+- Upload - 
+Компонент загрузки CSV-файлов с поддержкой drag&drop и кнопки выбора файла.
+Обрабатывает валидацию по расширению файла, отображает статус загрузки и ошибки, интегрируется с хуком useFileUpload для отправки данных на сервер.
+
+- Generator -
+Компонент генерации тестовых CSV-файлов. При нажатии отправляет запрос на сервер, получает и сохраняет сгенерированный файл, отображает статус процесса.
+
+- History - Компонент отображения истории аналитики, полученной из localstoradge. Позволяет удалять все историю или отдельные ее элементы.
+
+- AnalyticsRow -
+Строчка полученной аналитики для формирования таблицы/модального окна.
+
+- AnalyticsTable - 
+Таблица для отображения полученной аналитики из загруженного файла.
+
+- Modal - Компонент модального окна.
+
+- StatusLabel - 
+Отображение текущего статуса загрузки или генерации (idle, parsing, success, error).
+
+- ClearButton / UploadButton / Button - 
+Переиспользуемые кнопки с поддержкой разных состояний и стилей.
+
+## State management
+Используется Zustand для хранения состояния загрузки файла.
+
+## Взаимодействие с backend
+uploadFile(file: File) — отправка файла на сервер с обработкой потокового ответа и постепенным обновлением аналитики
+
+generateReport(params) — запрос генерации тестового отчёта
+
+История загрузок хранится в localStorage
+
+## Дополнительно
+Модальные окна реализованы через React Portals
+
+Навигация по страницам через react-router-dom
+
+Код форматируется и проверяется ESLint и Prettier
+
+
+## Примечания
+Сервер должен работать на http://localhost:3000
+
+В проекте реализована поддержка постепенного получения данных через ReadableStream

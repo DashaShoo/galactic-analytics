@@ -16,7 +16,6 @@ export const clearHistory = () => {
 };
 
 export const removeFromHistory = (id) => {
-  console.log('remove');
   const history = getHistory();
   const updatedHistory = history.filter((item) => item.id !== id);
   localStorage.setItem(HISTORY_KEY, JSON.stringify(updatedHistory));
