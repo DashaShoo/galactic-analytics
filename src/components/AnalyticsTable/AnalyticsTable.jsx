@@ -11,7 +11,7 @@ export const AnalyticsTable = ({ data }) => {
     <div className={styles.container}>
       <AnalyticsRow 
         title="общие расходы в галактических кредитах" 
-        value={data.total_spend_galactic} 
+        value={Math.round(data.total_spend_galactic)} 
       />
       <AnalyticsRow 
         title="количество обработанных записей" 
@@ -37,11 +37,11 @@ export const AnalyticsTable = ({ data }) => {
       />
       <AnalyticsRow 
         title="максимальная сумма расходов за день" 
-        value={data.big_spent_value} 
+        value={Math.round(data.big_spent_value)} 
       />
       <AnalyticsRow 
         title="средние расходы в галактических кредитах" 
-        value={data.average_spend_galactic} 
+        value={Math.round(data.average_spend_galactic)} 
       />
     </div>
   );

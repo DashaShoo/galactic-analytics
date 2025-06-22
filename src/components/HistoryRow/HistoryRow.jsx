@@ -35,7 +35,7 @@ export const HistoryRow = ({ fileName, date, status, data=null }) => {
                     <div className={styles.modalContainer}>
                           <AnalyticsRow mode="history"
                             title="общие расходы в галактических кредитах" 
-                            value={data.total_spend_galactic} 
+                            value={Math.round(data.total_spend_galactic)} 
                           />
                           <AnalyticsRow mode="history"
                             title="количество обработанных записей" 
@@ -61,11 +61,11 @@ export const HistoryRow = ({ fileName, date, status, data=null }) => {
                           />
                           <AnalyticsRow mode="history"
                             title="максимальная сумма расходов за день" 
-                            value={data.big_spent_value} 
+                            value={Math.round(data.big_spent_value)} 
                           />
                           <AnalyticsRow mode="history"
                             title="средние расходы в галактических кредитах" 
-                            value={data.average_spend_galactic} 
+                            value={Math.round(data.average_spend_galactic)} 
                           />
                     </div>
                 </div>
