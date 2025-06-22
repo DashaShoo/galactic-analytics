@@ -1,10 +1,10 @@
-import { useRef } from "react";
-import styles from "./Upload.module.css";
-import { UploadButton } from "../UploadButton/UploadButton";
-import { Button } from "../Button/Button";
+import { useRef } from 'react';
+import styles from './Upload.module.css';
+import { UploadButton } from '../UploadButton/UploadButton';
+import { Button } from '../Button/Button';
 import { ClearButton } from '../ClearButton/ClearButton';
 import { AnalyticsTable } from '../AnalyticsTable/AnalyticsTable';
-import { StatusLabel } from "../StatusLabel/StatusLabel";
+import { StatusLabel } from '../StatusLabel/StatusLabel';
 import { saveToHistory } from '../../services/history';
 import { useAppStore } from '../../store/store';
 
@@ -18,9 +18,9 @@ export const Upload = () => {
     setStatus,
     isDragging,
     setIsDragging,
-    resetUploadState
+    resetUploadState,
   } = useAppStore();
-  
+
   const inputRef = useRef(null);
 
   const handleDrop = (e) => {
@@ -48,7 +48,7 @@ export const Upload = () => {
 
   const handleDragOver = (e) => {
     e.preventDefault();
-    e.dataTransfer.dropEffect = "copy";
+    e.dataTransfer.dropEffect = 'copy';
     setIsDragging(true);
   };
 
@@ -96,7 +96,7 @@ export const Upload = () => {
 
       const response = await fetch('http://localhost:3000/aggregate?rows=10000', {
         method: 'POST',
-        body: formData
+        body: formData,
       });
 
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -160,9 +160,7 @@ export const Upload = () => {
   };
 
   const dropZoneClass = `${styles.dropZone} ${
-    isDragging ? styles.dragging :
-    file ? styles.fileLoaded :
-    status === 'error' ? styles.error : ''
+    isDragging ? styles.dragging : file ? styles.fileLoaded : status === 'error' ? styles.error : ''
   }`;
 
   return (
@@ -175,12 +173,7 @@ export const Upload = () => {
         onDragLeave={handleDragLeave}
       >
         <div className={styles.uploadContainer}>
-          <UploadButton
-            file={file}
-            status={status}
-            onClick={handleUploadClick}
-            mode='upload'
-          />
+          <UploadButton file={file} status={status} onClick={handleUploadClick} mode="upload" />
           {file && status !== 'parsing' && (
             <div className={styles.clearButtonWrapper}>
               <ClearButton onClick={handleClearFile} />
@@ -188,32 +181,24 @@ export const Upload = () => {
           )}
         </div>
 
-        <StatusLabel 
-          status={status} 
-          mode="upload" 
-          file={file}
-        />
+        <StatusLabel status={status} mode="upload" file={file} />
 
         <input
           ref={inputRef}
           type="file"
           accept=".csv"
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
           onChange={handleFileChange}
         />
       </div>
 
       {status !== 'parsing' && status !== 'success' && (
-        <Button
-          variant='default'
-          disabled={!file || status === 'error'}
-          onClick={handleSubmit}
-        >
+        <Button variant="default" disabled={!file || status === 'error'} onClick={handleSubmit}>
           Отправить
         </Button>
       )}
 
-      <AnalyticsTable data={analyticsData}/>
+      <AnalyticsTable data={analyticsData} />
     </section>
   );
 };

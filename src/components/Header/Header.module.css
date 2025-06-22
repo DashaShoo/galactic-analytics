@@ -4,7 +4,7 @@
   margin: 40px 40px 80px 40px;
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
-  color: #201B10;
+  color: #201b10;
   font-weight: 400;
 }
 
@@ -14,11 +14,11 @@
   gap: 40px;
 }
 
-.title{
-  background-color: #CB81FF;
+.title {
+  background-color: #cb81ff;
   font-weight: 500;
-    padding: 0 8px;
-    line-height: 89,5%;
+  padding: 0 8px;
+  line-height: 89, 5%;
 }
 
 .menu {
@@ -33,16 +33,15 @@
   gap: 16px;
   text-decoration: none;
   transition: color 0.2s ease;
-  color: #201B10;
+  color: #201b10;
   font-weight: 400;
   padding: 10px;
 }
 
-
 .active {
   font-weight: 400;
   text-decoration: underline;
-  text-decoration-color: #201B10;
+  text-decoration-color: #201b10;
   text-decoration-thickness: 2px;
   text-underline-offset: 10px;
 }

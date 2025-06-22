@@ -14,7 +14,7 @@
   padding: 15px 24px;
   font-weight: 400;
   font-size: 35px;
-  color: #201B10;
+  color: #201b10;
   cursor: pointer;
   width: 100%;
   min-width: 360px;
@@ -25,25 +25,25 @@
 
 .empty {
   background: white;
-  border: 2px solid #EACDFF;
+  border: 2px solid #eacdff;
 }
 
 .filled {
-  background: #CB81FF;
+  background: #cb81ff;
 }
 
 .parsing {
-  background: #CB81FF;
+  background: #cb81ff;
 }
 
 .error {
-  background: #FF5F00;
+  background: #ff5f00;
   color: white;
   border: none;
 }
 
 .success {
-  background: #D4FAE6;
+  background: #d4fae6;
   border: none;
 }
 

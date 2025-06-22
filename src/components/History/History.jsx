@@ -27,35 +27,27 @@ export const History = () => {
     <div className={styles.section}>
       {history.length > 0 && (
         <div className={styles.history}>
-          {history.map(item => (
+          {history.map((item) => (
             <div className={styles.row} key={item.id}>
-              <HistoryRow 
-                fileName={item.fileName} 
-                date={item.date} 
+              <HistoryRow
+                fileName={item.fileName}
+                date={item.date}
                 status={item.status}
                 data={item.analyticsData}
               />
-              <ClearButton 
-                mode='delete' 
-                onClick={() => handleDelete(item.id)}
-              /> 
+              <ClearButton mode="delete" onClick={() => handleDelete(item.id)} />
             </div>
           ))}
         </div>
       )}
-      
+
       <div className={styles.buttons}>
         <Link to="/generate">
-          <Button variant='default'>
-            Сгенерировать больше
-          </Button>
+          <Button variant="default">Сгенерировать больше</Button>
         </Link>
-        
+
         {history.length > 0 && (
-          <Button 
-            variant='primary' 
-            onClick={handleClearAll}
-          >
+          <Button variant="primary" onClick={handleClearAll}>
             Очистить всё
           </Button>
         )}

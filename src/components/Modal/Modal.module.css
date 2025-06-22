@@ -1,30 +1,29 @@
-.modalOverlay{
-    position: fixed;
-    top: 0;
-    left:0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    z-index: 1000;
-     overflow-y: auto;
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
-.modalContent{
-    background: white;
-    padding: 40px;
-    border-radius: 45px;
-    position: relative;
-    top: 250px;
-    width: 1000px;
-    
+.modalContent {
+  background: white;
+  padding: 40px;
+  border-radius: 45px;
+  position: relative;
+  top: 250px;
+  width: 1000px;
 }
 
 .closeButton {
-    position: absolute;
-    top: -35px;
-    right: -82px;
-    z-index: 1001;
+  position: absolute;
+  top: -35px;
+  right: -82px;
+  z-index: 1001;
 }

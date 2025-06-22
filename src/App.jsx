@@ -1,6 +1,6 @@
-import './App.css'
+import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Header } from './components/Header/Header'
+import { Header } from './components/Header/Header';
 import { AnalyticsPage } from './pages/AnalyticsPage/AnalyticsPage';
 import { GeneratePage } from './pages/GeneratePage/GeneratePage';
 import { HistoryPage } from './pages/HistoryPage/HistoryPage';
@@ -18,4 +18,4 @@ function App() {
     </>
   );
 }
-export default App
+export default App;

@@ -13,17 +13,17 @@
 }
 
 .default {
-  background-color: #2AE881;
-  color: #201B10;
+  background-color: #2ae881;
+  color: #201b10;
 }
 
 .primary {
-  background-color: #201B10;
-  color: #FFFFFF;
+  background-color: #201b10;
+  color: #ffffff;
 }
 
 .disabled {
-  background-color: #C0C0C0;
+  background-color: #c0c0c0;
   color: #787878;
   cursor: not-allowed;
 }

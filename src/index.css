@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Roboto';
   src: url('/fonts/Roboto-Regular.ttf') format('truetype');
-  font-weight: 400; 
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -19,11 +19,10 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #FCE2FF;
+  background-color: #fce2ff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
