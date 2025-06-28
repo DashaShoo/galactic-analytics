@@ -29,18 +29,18 @@ export const Generator = () => {
   return (
     <div className={styles.section}>
       {status === 'idle' && (
-        <Button variant="default" onClick={handleSubmit}>
+        <Button variant="default" onClick={handleSubmit} data-testid="start-button">
           Начать генерацию
         </Button>
       )}
 
       {(status === 'parsing' || status === 'success' || status === 'error') && (
         <div className={styles.uploadContainer}>
-          <UploadButton status={status} file={generatedFile} mode="generate" />
+          <UploadButton status={status} file={generatedFile} mode="generate" data-testid="upload-button"/>
 
           {status !== 'parsing' && (
             <div className={styles.clearButtonWrapper}>
-              <ClearButton onClick={handleClear} />
+              <ClearButton onClick={handleClear} data-testid="clear-button"/>
             </div>
           )}
         </div>

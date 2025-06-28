@@ -30,7 +30,7 @@ export const StatusLabel = ({ status, mode = 'upload', file = null, customTexts 
   };
 
   return (
-    <p className={`${styles.statusText} ${status === 'error' ? styles.errorText : ''}`}>
+    <p data-testid="status-label" className={`${styles.statusText} ${status === 'error' ? styles.errorText : ''}`}>
       {getStatusText()}
     </p>
   );

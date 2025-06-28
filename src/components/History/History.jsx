@@ -26,16 +26,16 @@ export const History = () => {
   return (
     <div className={styles.section}>
       {history.length > 0 && (
-        <div className={styles.history}>
+        <div className={styles.history} data-testid="history-list">
           {history.map((item) => (
-            <div className={styles.row} key={item.id}>
+            <div className={styles.row} key={item.id} data-testid={`history-item-${item.id}`}>
               <HistoryRow
                 fileName={item.fileName}
                 date={item.date}
                 status={item.status}
                 data={item.analyticsData}
               />
-              <ClearButton mode="delete" onClick={() => handleDelete(item.id)} />
+              <ClearButton mode="delete" onClick={() => handleDelete(item.id)} data-testid={`delete-${item.id}`}/>
             </div>
           ))}
         </div>
@@ -43,11 +43,11 @@ export const History = () => {
 
       <div className={styles.buttons}>
         <Link to="/generate">
-          <Button variant="default">Сгенерировать больше</Button>
+          <Button variant="default" data-testid='redirect-button'>Сгенерировать больше</Button>
         </Link>
 
         {history.length > 0 && (
-          <Button variant="primary" onClick={handleClearAll}>
+          <Button variant="primary" onClick={handleClearAll} data-testid="clear-all">
             Очистить всё
           </Button>
         )}

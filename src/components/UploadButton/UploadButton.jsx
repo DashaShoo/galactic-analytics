@@ -6,6 +6,7 @@ export const UploadButton = ({
   status = 'idle',
   onClick = () => {},
   mode = 'upload', // 'upload' или 'generate'
+  'data-testid': testId
 }) => {
   const inputRef = useRef(null);
 
@@ -18,7 +19,7 @@ export const UploadButton = ({
   const renderContent = () => {
     if (status === 'parsing') {
       return (
-        <div className={`${styles.button} ${styles.parsing}`}>
+        <div className={`${styles.button} ${styles.parsing}`} data-testid={testId}>
           <span className={styles.loader}>
             <img src="/images/Loading.svg" alt="Loading" />
           </span>
@@ -35,13 +36,13 @@ export const UploadButton = ({
 
     if (mode === 'upload') {
       return (
-        <div className={buttonClass} onClick={onClick}>
+        <div className={buttonClass} onClick={onClick} data-testid={testId}>
           <span>{file ? file.name : 'Загрузить файл'}</span>
         </div>
       );
     } else if (mode === 'generate') {
       return (
-        <div className={buttonClass} onClick={onClick}>
+        <div className={buttonClass} onClick={onClick} data-testid={testId}>
           <span>{status === 'error' ? 'Ошибка' : status === 'success' ? 'Done!' : ''}</span>
         </div>
       );

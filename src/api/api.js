@@ -10,7 +10,7 @@ export const uploadFile = async (file) => {
   return response;
 };
 
-export const generateReport = async (params = { size: 0.1, withErrors: true, maxSpend: 1000 }) => {
+export const generateReport = async (params = { size: 0.01, withErrors: true, maxSpend: 1000 }) => {
   const query = new URLSearchParams(params);
   const response = await fetch(`http://localhost:3000/report?${query}`);
 

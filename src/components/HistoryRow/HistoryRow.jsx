@@ -16,7 +16,7 @@ export const HistoryRow = ({ fileName, date, status, data = null }) => {
 
   return (
     <>
-      <div className={styles.row} onClick={() => setIsModalOpen(true)}>
+      <div className={styles.row} onClick={() => setIsModalOpen(true)} data-testid={`row-${fileName}`}>
         <div className={styles.container}>
           <img className={styles.fileIcon} src="/images/File.svg" alt="File icon" />
           <div className={styles.fileName}>{fileName}</div>

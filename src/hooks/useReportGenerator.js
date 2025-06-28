@@ -1,4 +1,4 @@
-import { generateReport } from '../api/api';
+import { generateReport } from '../api/api.js';
 
 export const useReportGenerator = () => {
   const generate = async () => {

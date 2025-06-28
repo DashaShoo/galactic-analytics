@@ -102,12 +102,13 @@ export const Upload = () => {
         onDragOver={handleDragOver}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
+        data-testid="drop-zone"
       >
         <div className={styles.uploadContainer}>
-          <UploadButton file={file} status={status} onClick={handleUploadClick} mode="upload" />
+          <UploadButton file={file} status={status} onClick={handleUploadClick} mode="upload" data-testid="upload-button"/>
           {file && status !== 'parsing' && (
             <div className={styles.clearButtonWrapper}>
-              <ClearButton onClick={handleClearFile} />
+              <ClearButton onClick={handleClearFile} data-testid="clear-button"/>
             </div>
           )}
         </div>
@@ -120,11 +121,12 @@ export const Upload = () => {
           accept=".csv"
           style={{ display: 'none' }}
           onChange={handleFileChange}
+          data-testid='file-input'
         />
       </div>
 
       {status !== 'parsing' && status !== 'success' && (
-        <Button variant="default" disabled={!file || status === 'error'} onClick={handleSubmit}>
+        <Button data-testid="submit-button" variant="default" disabled={!file || status === 'error'} onClick={handleSubmit}>
           Отправить
         </Button>
       )}

@@ -7,7 +7,7 @@ export const Modal = ({ isOpen, onClose, children }) => {
 
   return createPortal(
     <div className={styles.modalOverlay} onClick={onClose}>
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()} data-testid="modal">
         <div className={styles.closeButton}>
           <ClearButton mode="clear" onClick={onClose}></ClearButton>
         </div>

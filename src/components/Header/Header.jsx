@@ -11,20 +11,20 @@ export const Header = () => {
         <span className={styles.title}>МЕЖГАЛАКТИЧЕСКАЯ АНАЛИТИКА</span>
       </div>
       <nav className={styles.menu}>
-        <Link to="/" className={`${styles.link} ${location.pathname === '/' ? styles.active : ''}`}>
+        <Link to="/" className={`${styles.link} ${location.pathname === '/' ? styles.active : ''}`} data-testid='link-analytics'>
           <img src="/images/Download.svg" alt="" />
           CSV Аналитик
         </Link>
         <Link
           to="/generate"
-          className={`${styles.link} ${location.pathname === '/generate' ? styles.active : ''}`}
+          className={`${styles.link} ${location.pathname === '/generate' ? styles.active : ''}`} data-testid='link-generate'
         >
           <img src="/images/Generator.svg" alt="" />
           CSV Генератор
         </Link>
         <Link
           to="/history"
-          className={`${styles.link} ${location.pathname === '/history' ? styles.active : ''}`}
+          className={`${styles.link} ${location.pathname === '/history' ? styles.active : ''}`} data-testid='link-history'
         >
           <img src="/images/History.svg" alt="" />
           История

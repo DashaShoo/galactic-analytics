@@ -9,18 +9,18 @@ const dayToDate = (day) => {
   });
 };
 
-export const AnalyticsRow = ({ title, value, isDay = false, mode = 'table' }) => {
+export const AnalyticsRow = ({ title, value, isDay = false, mode = 'table', 'data-testid': testId }) => {
   const displayValue = isDay ? dayToDate(value) : value;
   if (mode === 'table') {
     return (
-      <div className={styles.row}>
+      <div className={styles.row} data-testid={testId}>
         <div className={styles.value}>{displayValue}</div>
         <div className={styles.title}>{title}</div>
       </div>
     );
   } else if (mode === 'history') {
     return (
-      <div className={styles.historyRow}>
+      <div className={styles.historyRow} data-testid={testId}>
         <div className={styles.value}>{displayValue}</div>
         <div className={styles.title}>{title}</div>
       </div>
